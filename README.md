@@ -29,4 +29,4 @@ ARTS 源于极客时间《左耳听风》专栏组织的一个学习打卡活动
 
 ## 参与方式
 
-可以以任何方式: github、公众号、分享出来的笔记页, 将链接统一记录到 [github 小组仓库](https://github.com/Continuous-Study/ARTS), github账号发给[李捷承](ljclg_1516@foxmail.com)加入小组
+可以以任何方式: github、公众号、分享出来的笔记页, 将链接统一记录到 [github ATRS仓库](https://github.com/Continuous-Study/ARTS), github账号发给[李捷承](ljclg_1516@foxmail.com)加入小组
