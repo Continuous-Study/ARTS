@@ -8,7 +8,9 @@
 
 ### A.1
 
-https://mp.weixin.qq.com/s?__biz=MzkzOTAyMjEyMg==&mid=2247483653&idx=1&sn=b27bb772276bbc40c1b236bad681c791#rd
+* https://github.com/Will-Grindelwald/AimToOffer/blob/master/src/main/java/leetcode/algo/Easy_1_Two_Sum.md
+* https://github.com/Will-Grindelwald/AimToOffer/blob/master/src/main/java/leetcode/algo/Medium_2_Add_Two_Numbers.md
+* https://github.com/Will-Grindelwald/AimToOffer/blob/master/src/main/java/leetcode/algo/Medium_3_Longest_Substring_Without_Repeating_Characters.md
 
 ### R.1
 
