@@ -22,9 +22,65 @@ PS: 说实在的云服务商是不值得信任的，阿里云的 sla 是 3 个 9
 
 除了 doc，[blog](https://kubernetes.io/zh/blog) 也值得一看。
 
-下面是阅读笔记
+#### 阅读笔记
 
-// TODO
+只看完了入门 & 概述
+
+初步理解：k8s 就是“软件定义硬件” or “软件定义基础设施”，类似 sdn，将硬件用软件定义后，对硬件的操作(运维)就变成了规范化的、可程序化的，将极大的减轻人肉运维的压力，让几十人管理几千实例成为可能。
+
+##### 杂
+
+docker、lxc、lxd 三种容器，Docker 已经成为容器化的事实标准。参考[文献1](https://www.zhihu.com/question/268288911)、[文献2](https://blog.csdn.net/zhengmx100/article/details/79415742)、[文献3](https://www.upguard.com/articles/docker-vs-lxc)
+
+Kubernetes 版本号格式为 x.y.z，大、小、补丁，小版本 3 个月一发，只维护 9 个月。
+
+k8s 据说有 100w 行代码
+
+##### 本地测试环境搭建
+
+[minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) or [microk8s](https://microk8s.io/) for mac/linux。microk8s on linux 上是用的 snap，更轻量。但在 mac 上，都是建了个 vm，在 vm 里跑 k8s，都比较费资源。
+
+不要用 win 了
+
+###### minikube
+
+minikube start | stop | status | delete
+minikube dashboard | service
+
+###### microk8s
+
+有墙，没安上
+
+##### 总览
+
+* Kubernetes 组件
+    * 控制平面组件(除 etcd 都运行在 Master 节点)
+        * Master 节点：是指管理集群状态的一组进程的集合，通常这些进程都跑在集群中一个单独的节点上(可以多 master for HA)，称为 master 节点
+        * kube-apiserver：控制面的前端，提供 Kubernetes API for kubectl、kubelet、kube-proxy
+        * kube-controller-manager：一组 controller 的集合
+            * NodeController
+            * ReplicationController
+            * EndpointsController
+            * TokenController
+        * kube-scheduler：调度器
+        * etcd：作为数据库
+    * Node 组件(集群中的每个 Node 节点都运行这两个进程)
+        * Node 节点：node 节点是用来运行你的应用和云工作流的机器。master 节点控制所有 node 节点；你很少需要和 node 节点进行直接通信。
+        * kubelet：node 节点上的代理，和 master 节点进行通信，保证容器运行
+        * kube-proxy：一种网络代理，维护节点上的网络规则。
+* Kubernetes 基本对象
+    * Pod
+    * Service
+    * Volume
+    * Namespace
+* Kubernetes 高级对象 Controller
+    * Deployment
+    * DaemonSet
+    * StatefulSet
+    * ReplicaSet
+    * Job
+
+![Kubernetes 集群](https://d33wubrfki0l68.cloudfront.net/7016517375d10c702489167e704dcb99e570df85/7bb53/images/docs/components-of-kubernetes.png)
 
 ### T.1
 
