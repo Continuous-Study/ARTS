@@ -6,7 +6,10 @@
 
 ### A.2
 
-// TODO
+这周时间不多，就做了两个简单题
+
+* https://github.com/Will-Grindelwald/AimToOffer/blob/master/src/main/java/leetcode/algo/Easy_20_Valid_Parentheses.md
+* https://github.com/Will-Grindelwald/AimToOffer/blob/master/src/main/java/leetcode/algo/Easy_155_Min_Stack.md
 
 ### R.2
 
