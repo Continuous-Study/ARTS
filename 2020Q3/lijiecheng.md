@@ -4,6 +4,8 @@
 
 每周寄语: 面试造火箭，工作拧螺丝。不要让自己变成只会拧螺丝的，只有更多的技术储备，才能在机会来临时时抓住。
 
+PS：本来想 4 项全做的，share 确实不好写，没做 S。
+
 ### A.2
 
 这周时间不多，就做了两个简单题
@@ -195,7 +197,3 @@ btrace、JFR、arthas。这几个高级工具这次先不讲了。还有 google 
     1. 封面 & 配图 要用无版权图片哦 https://www.zhihu.com/question/37493361
 1. 摸鱼刷题插件 IDEA-leetcode、vscode-leetcode
 1. review 和 shared 的区别：review 是输入，shared 是输出。一般初学者是 输入 >> 输出，不要灰心
-
-### S.1
-
-// TODO javaagent
