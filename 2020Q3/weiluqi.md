@@ -27,18 +27,38 @@
 
 ### 本文的工作
 #### 核心思路
-使用skip-above和skip-next的方法，构造url的偏序对，聚合同一query下的所有偏序对，构造成一个有向图，每个顶点是每个url，边的方向是从点击的url指向未点击的url，目标是给所有顶点标注一个label，使得整个图中正反馈边的权重-负反馈边的权重最大。
+使用skip-above和skip-next的方法，构造url的偏序对，聚合同一query下的所有偏序对，构造成一个有向图，每个顶点是每个url，边的方向是从点击的url指向未点击的url，目标是给所有顶点标注一个label，使得$A_G(L)$(整个图中正反馈边的权重-负反馈边的权重)最大。
 #### 什么是正反馈边、负反馈边
 两个顶点标注的label之间的偏序与从点击日志中获取的偏序对的偏序相反，则是负反馈边，否则是正反馈边。
 #### 构造图时，边的权重如何计算
 做了一个用户调查，统计了这样的一个概率P[ij]=P(read i | click j)，这个概率表示的是用户点击了第j个位置的条件下，一共浏览到第i个位置的概率。构造偏序对的两个url，如果其中发生点击行为的url位置为j，未点击的url为i，其对应的边的权重就是P[ij]，多个相同url的偏序对，权重相加
 #### 是否可解
 文章证明了当label的数量为2时，问题的时间复杂度是O(|E|)，E是边的数量。当label数量无穷时，是个NP-hard问题。对于其它数量的label的情况，他们leave open了。。。。。
-证明过程没看
-
+定义一个节点的权重为所有出边权重-所有入边的权重，证明了在label数量为2是，其中所有分到第一类label下的节点的权重和就是$A_G(L)$
 #### 如何求解
-TODO
-
-
-
-注意力
+##### 首先将所有节点进行排序
+文章提供的三种可选的方法
+1. 如果label只有2，可以直接按节点权重排序
+2. Bucket Pivot Algorithm：随机选一个节点，根据和该节点只构成入边、和该节点只构成出边、其它，将所有节点分成三类，然后递归的在三个类中进行同样的操作。
+3. page-rank：将所有的边反转构造新图（因为pagerank中入边多的节点一般会获得更大的权重），然后再在新图上运行pagerank算法。
+##### 然后使用动态规划求解最优的图划分方法
+抽象成的问题就是，将上面排好序的节点分割成N段，使得$A_G(L)$最大。
+1. 构造矩阵B，B[j,i]表示：当前最后一个分割点是j，如果再在i处增加一个分割点，$A_G(L)$将增大的值，其中$0 \le j \le min(x,y)-1, min(x,y) \le i \le max(x,y)$。
+   ```
+    // Algorithm 1 The algorithm for computing matrix B
+    // Input: The edge set E of the graph G.
+    // Output: The added benefit matrix B.
+    for all e = (vx, vy) ∈ E do
+        ℓ = min{x, y}; r = max{x, y}.
+        for all j = 0, . . . , ℓ − 1 do
+            for all i = ℓ, . . . , r do
+                if x < y then
+                    B[j, i] = B[j, i] + w(vx, vy)
+                else
+                    B[j, i] = B[j, i] − w(vx, vy)
+                end if
+            end for
+        end for
+    end for
+    ```
+2. 构造矩阵OPT，OPT[k,i]表示：当一共有k个分割点时，最后一个分割点在i处的$A_G(L)$，更新到方式$OPT[k,i] = {max}_{k-1 \le j \le i}(OPT[k-1,j]+B[j,i])$。最终$A_G(L)={max}_{k-1 \le i \le n-1} OPT[k-1,i]$
