@@ -197,3 +197,7 @@ btrace、JFR、arthas。这几个高级工具这次先不讲了。还有 google 
     1. 封面 & 配图 要用无版权图片哦 https://www.zhihu.com/question/37493361
 1. 摸鱼刷题插件 IDEA-leetcode、vscode-leetcode
 1. review 和 shared 的区别：review 是输入，shared 是输出。一般初学者是 输入 >> 输出，不要灰心
+
+## 0606-0712
+
+这周搬家，事多，请假
